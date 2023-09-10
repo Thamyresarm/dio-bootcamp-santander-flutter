@@ -4,28 +4,28 @@ import 'dart:io';
 void imc() {
   var opcao;
   do {
-    print('Digite o seu peso(kg) ou qualquer tecla para sair: ');
-    var dado = stdin.readLineSync(encoding: utf8);
-    var peso = double.tryParse(dado ?? "");
+    var peso = double.tryParse(lerConsole('Digite o seu peso(kg) ou qualquer tecla para sair: '));
     opcao = peso ?? "s";
 
     if (peso != null) {
-      print('Digite a sua altura(metros) ou qualquer tecla para sair: ');
-      dado = stdin.readLineSync(encoding: utf8);
-      var altura = double.tryParse(dado ?? "");
+      var altura = double.tryParse(lerConsole('Digite a sua altura(metros) ou qualquer tecla para sair: '));
       opcao = altura ?? "s";
 
       if (altura != null) {
         var valorImc = calculaImc(peso, altura);
 
-        var situacaoImc = estadoNutricional(valorImc);
-
-        print(situacaoImc);
+        print(estadoNutricional(valorImc));
       }
     }
-  } while (opcao.toUpperCase() != "S");
+  } while (opcao != "s");
 
   print("Calculadora Finalizada!");
+}
+
+String lerConsole(texto){
+  print(texto);
+  var dado = stdin.readLineSync(encoding: utf8);
+  return dado ?? "";
 }
 
 double calculaImc(peso, altura) {
