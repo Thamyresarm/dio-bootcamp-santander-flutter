@@ -4,11 +4,11 @@ import 'dart:io';
 void imc() {
   var opcao;
   do {
-    var peso = double.tryParse(lerConsole('Digite o seu peso(kg) ou qualquer tecla para sair: '));
+    var peso = double.tryParse(lerConsole('Digite o seu peso(kg) ou qualquer letra para sair: '));
     opcao = peso ?? "s";
 
     if (peso != null) {
-      var altura = double.tryParse(lerConsole('Digite a sua altura(metros) ou qualquer tecla para sair: '));
+      var altura = double.tryParse(lerConsole('Digite a sua altura(metros) ou qualquer letra para sair: '));
       opcao = altura ?? "s";
 
       if (altura != null) {
