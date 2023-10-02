@@ -33,9 +33,7 @@ class _MainPageState extends State<MainPage> {
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => const DadosCadastraisPage(
-                        texto: "Meus Dados",
-                      )
+                      builder: (context) => const DadosCadastraisPage()
                     ));
                   },
                 ),
