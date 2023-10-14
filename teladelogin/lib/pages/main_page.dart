@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:meuprimeiroapp/pages/dados_cadastrais.dart';
-import 'package:meuprimeiroapp/pages/pagina_dois.dart';
-import 'package:meuprimeiroapp/pages/pagina_um.dart';
+import 'package:meuprimeiroapp/pages/image_assets.dart';
+import 'package:meuprimeiroapp/pages/card_page.dart';
+import 'package:meuprimeiroapp/pages/list_view.dart';
+import 'package:meuprimeiroapp/pages/list_view_h.dart';
+import 'package:meuprimeiroapp/pages/tarefa_page.dart';
+import 'package:meuprimeiroapp/shared/widgets/custon_drawer.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -19,38 +22,7 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: const Text("HOME PAGE")),
-        drawer: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Column(   
-              crossAxisAlignment: CrossAxisAlignment.start,         
-              children: [
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Dados Cadastrais")),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(
-                      builder: (context) => const DadosCadastraisPage()
-                    ));
-                  },
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,child: const Text("Configurações")),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
+        drawer: const CustonDrawer(),
       body: Column(
         children: [
           Expanded(
@@ -62,12 +34,16 @@ class _MainPageState extends State<MainPage> {
                 });
               },
               children: const [
-                PaginaUmPage(),
-                PaginaDoisPage(),                
+                CardPage(),
+                ImageAssetsPage(),
+                ListViewPage(),    
+                ListViewHPage(),
+                TarefaPage(), 
               ]
             ),
           ),
           BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             onTap: (value){
               controller.jumpToPage(value);
             },
@@ -78,8 +54,20 @@ class _MainPageState extends State<MainPage> {
               icon: Icon(Icons.home)
             ),
              BottomNavigationBarItem(
-              label: "Pink",
-              icon: Icon(Icons.person)
+              label: "Card",
+              icon: Icon(Icons.card_giftcard)
+            ),
+            BottomNavigationBarItem(
+              label: "List",
+              icon: Icon(Icons.list)
+            ),
+            BottomNavigationBarItem(
+              label: "ListH",
+              icon: Icon(Icons.list)
+            ),
+            BottomNavigationBarItem(
+              label: "Tarefas",
+              icon: Icon(Icons.task)
             ),
           ])
         ],
